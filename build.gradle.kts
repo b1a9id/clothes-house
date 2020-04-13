@@ -47,9 +47,6 @@ node {
 	npmVersion = "6.13.7"
 	yarnVersion = "1.22.0"
 	download = true
-	workDir = file("${project.buildDir}/frontend")
-	npmWorkDir = file("${project.buildDir}/frontend")
-	yarnWorkDir = file("${project.buildDir}/frontend")
 }
 
 val buildReact by tasks.registering(YarnTask::class) {
