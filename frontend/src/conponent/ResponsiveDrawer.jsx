@@ -51,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
-  const {container} = props;
+  const { container } = props;
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-  }
+  };
 
   const drawer = (
     <div>
@@ -79,7 +79,7 @@ function ResponsiveDrawer(props) {
 
   return (
     <div className={classes.root}>
-      <CssBaseline/>
+      <CssBaseline />
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -89,7 +89,7 @@ function ResponsiveDrawer(props) {
             onClick={handleDrawerToggle}
             className={classes.menuButton}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
             Menu
@@ -107,7 +107,7 @@ function ResponsiveDrawer(props) {
             classes={{
               paper: classes.drawerPaper,
             }}
-            ModelProps={{
+            ModalProps={{
               keepMounted: true,
             }}
           >
@@ -125,16 +125,16 @@ function ResponsiveDrawer(props) {
             {drawer}
           </Drawer>
         </Hidden>
-        <main className={classes.content}>
-          <div className={classes.toolbar}/>
-          <Typography paragraph>
-            TEST1
-          </Typography>
-          <Typography paragraph>
-            TEST2
-          </Typography>
-        </main>
       </nav>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <Typography paragraph>
+          TEST1
+        </Typography>
+        <Typography paragraph>
+          TEST2
+        </Typography>
+      </main>
     </div>
   );
 }
