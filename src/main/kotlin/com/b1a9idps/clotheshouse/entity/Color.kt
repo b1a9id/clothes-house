@@ -7,7 +7,7 @@ import javax.persistence.Id
 @Entity
 data class Color(
         @Id
-        @GeneratedValue
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
         val id: Long? = null,
         val name: String? = null
 )
