@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import com.moowork.gradle.node.yarn.YarnTask
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "2.2.6.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	id("com.moowork.node") version "1.3.1"
+	id("com.github.node-gradle.node") version "2.2.3"
 	kotlin("jvm") version "1.3.71"
 	kotlin("plugin.spring") version "1.3.71"
 }
@@ -40,6 +40,16 @@ dependencies {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
 //	testImplementation("org.springframework.security:spring-security-test")
+}
+
+node {
+	version = "13.9.0"
+	npmVersion = "6.13.7"
+	yarnVersion = "1.22.0"
+	download = true
+	workDir = file("${project.buildDir}/frontend")
+	npmWorkDir = file("${project.buildDir}/frontend")
+	yarnWorkDir = file("${project.buildDir}/frontend")
 }
 
 val buildReact by tasks.registering(YarnTask::class) {
