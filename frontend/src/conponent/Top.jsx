@@ -16,11 +16,8 @@ function Top() {
   return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
-      <Typography paragraph>
-        TEST1
-      </Typography>
-      <Typography paragraph>
-        TEST2
+      <Typography variant="h4">
+        Closet
       </Typography>
     </main>
   );
