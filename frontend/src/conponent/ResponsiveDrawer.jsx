@@ -15,6 +15,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
+import Top from "./Top";
 
 const drawerWidth = 240;
 
@@ -40,13 +41,8 @@ const useStyles = makeStyles((theme) => ({
       display: 'none',
     },
   },
-  toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth,
-  },
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
   },
 }));
 
@@ -126,15 +122,7 @@ function ResponsiveDrawer(props) {
           </Drawer>
         </Hidden>
       </nav>
-      <main className={classes.content}>
-        <div className={classes.toolbar} />
-        <Typography paragraph>
-          TEST1
-        </Typography>
-        <Typography paragraph>
-          TEST2
-        </Typography>
-      </main>
+      <Top />
     </div>
   );
 }
