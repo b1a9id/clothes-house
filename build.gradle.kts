@@ -59,10 +59,8 @@ val buildReact by tasks.registering(YarnTask::class) {
 	})
 	val env: String? = System.getenv("GITHUB_WORKSPACE")
 	if (env != null) {
-		outputs.dir("$env")
+		outputs.dir(File( "$env", "frontend"))
 	}
-	println("######")
-	println(outputs)
 }
 
 tasks.named("yarn_install") {
