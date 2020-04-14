@@ -61,6 +61,8 @@ val buildReact by tasks.registering(YarnTask::class) {
 	if (env != null) {
 		outputs.dir("$env")
 	}
+	println("######")
+	println(outputs)
 }
 
 tasks.named("yarn_install") {
