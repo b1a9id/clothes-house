@@ -43,10 +43,11 @@ dependencies {
 }
 
 node {
-//	version = "13.9.0"
-//	npmVersion = "6.13.7"
+	version = "13.9.0"
+	npmVersion = "6.13.7"
 	yarnVersion = "1.22.0"
 	download = true
+	nodeModulesDir = File(project.projectDir, "frontend")
 }
 
 val buildReact by tasks.registering(YarnTask::class) {
@@ -56,13 +57,13 @@ val buildReact by tasks.registering(YarnTask::class) {
 	})
 }
 
-//tasks.named("yarn_install") {
-//	dependsOn("yarn_cache_clean")
-//}
-//
-//tasks.named("buildReact") {
-//	dependsOn("yarn_install")
-//}
+tasks.named("yarn_install") {
+	dependsOn("yarn_cache_clean")
+}
+
+tasks.named("buildReact") {
+	dependsOn("yarn_install")
+}
 
 tasks.build {
 	dependsOn(buildReact)
