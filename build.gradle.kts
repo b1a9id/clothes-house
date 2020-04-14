@@ -59,7 +59,7 @@ val buildReact by tasks.registering(YarnTask::class) {
 	})
 	val env: String? = System.getenv("GITHUB_WORKSPACE")
 	if (env != null) {
-		outputs.dir(File( "$env", "frontend"))
+		outputs.dir(File( "$env/frontend", "public"))
 	}
 }
 
