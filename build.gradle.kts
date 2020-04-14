@@ -11,7 +11,8 @@ plugins {
 
 group = "com.b1a9idps"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_14
+java.sourceCompatibility = JavaVersion.VERSION_11
+java.targetCompatibility = JavaVersion.VERSION_11
 
 configurations {
 	compileOnly {
@@ -76,6 +77,6 @@ tasks.withType<Test> {
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")
-		jvmTarget = "13"
+		jvmTarget = "11"
 	}
 }
