@@ -57,10 +57,6 @@ val buildReact by tasks.registering(YarnTask::class) {
 	setExecOverrides(closureOf<ExecSpec> {
 		setWorkingDir("./frontend")
 	})
-	val env: String? = System.getenv("GITHUB_WORKSPACE")
-	if (env != null) {
-		outputs.dir("$env")
-	}
 }
 
 tasks.named("yarn_install") {
