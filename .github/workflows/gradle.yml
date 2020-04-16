@@ -16,5 +16,11 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Build with Gradle
-      run: ./gradlew clean build
+    - name: Build with Gradle and create Dockerfile
+      run: ./gradlew jib
+    - name: Login to Heroku Container registry
+      env:
+        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+      run: heroku container:login
+    - name: Push to heroku
+      run: heroku container:push web
