@@ -71,6 +71,10 @@ tasks.build {
 	dependsOn(buildReact)
 }
 
+tasks.jibDockerBuild {
+	dependsOn(buildReact)
+}
+
 tasks.withType<Test> {
 	useJUnitPlatform()
 }
