@@ -1,22 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
-import logger from 'redux-logger';
 import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'connected-react-router';
+import createBrowserHistory from 'history/createBrowserHistory';
 import App from './App';
-import * as reducers from './reducers';
+import createStore from './createStore';
 import * as serviceWorker from './serviceWorker';
 
+// historyのインスタンスを生成
+const history = createBrowserHistory();
+
 // Storeの生成
-const store = createStore(
-  combineReducers(reducers),
-  applyMiddleware(logger)
-)
+const store = createStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <ConnectedRouter history={history}>
+      <App />
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );
