@@ -2,12 +2,12 @@ import com.moowork.gradle.node.yarn.YarnTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-	id("org.springframework.boot") version "2.2.6.RELEASE"
+	id("org.springframework.boot") version "2.3.0.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
-	id("com.github.node-gradle.node") version "2.2.3"
-	id("com.google.cloud.tools.jib") version "2.1.0"
+	id("com.github.node-gradle.node") version "2.2.4"
+	id("com.google.cloud.tools.jib") version "2.3.0"
 	kotlin("jvm") version "1.3.71"
-	kotlin("plugin.spring") version "1.3.71"
+	kotlin("plugin.spring") version "1.3.72"
 }
 
 group = "com.b1a9idps"
