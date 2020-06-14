@@ -12,9 +12,9 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{ paddingLeft: 240 }}>
         <CssBaseline />
-        <AppBar position="fixed">
+        <AppBar position="fixed" style={{ left: 240 }}>
           <Toolbar>
             <Typography variant="h6" noWrap>
               Clothe House
@@ -23,7 +23,7 @@ class App extends Component {
         </AppBar>
 
         <Nav />
-        <Switch>
+        <Switch style={{ marginTop: 64, padding: 32}}>
           <Route exact path="/" component={Closet} />
           <Route path="/settings" component={Setting} />
         </Switch>
