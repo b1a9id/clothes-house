@@ -1,10 +1,8 @@
 package com.b1a9idps.clotheshouse.repository
 
-import com.b1a9idps.clotheshouse.entity.Brand
-import com.b1a9idps.clotheshouse.entity.Category
-import com.b1a9idps.clotheshouse.entity.Color
 import com.b1a9idps.clotheshouse.entity.Genre
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.stereotype.Repository
 
-interface GenreRepository : JpaRepository<Genre, Long> {
-}
+@Repository
+interface GenreRepository : JpaRepository<Genre, Long>

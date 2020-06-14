@@ -1,18 +1,15 @@
 package com.b1a9idps.clotheshouse.entity
 
-import java.net.URI
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import javax.persistence.*
 
 @Entity
 data class Item (
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
+        @SequenceGenerator(name = "item_seq_gen", sequenceName = "item_seq", allocationSize = 1)
         val id: Long? = null,
-        val brandId: Int? = null,
-        val genreId: Int? = null,
-        val colorId: Int? = null,
-        val imageUrl: URI? = null
+        val brandId: Long? = null,
+        val genreId: Long? = null,
+        val colorId: Long? = null,
+        val imageUrl: String? = null
 )
