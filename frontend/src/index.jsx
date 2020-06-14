@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import createBrowserHistory from 'history/createBrowserHistory';
+import configureStore, { history } from "./configureStore";
 import App from './App';
-import createStore from './createStore';
+import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-// historyのインスタンスを生成
-const history = createBrowserHistory();
-
 // Storeの生成
-const store = createStore(history);
+const store = configureStore(history);
 
 ReactDOM.render(
   <Provider store={store}>
