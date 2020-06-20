@@ -5,7 +5,6 @@ import com.b1a9idps.clotheshouse.repository.GenreRepository
 import com.b1a9idps.clotheshouse.service.GenreService
 import com.b1a9idps.clotheshouse.service.dto.GenreDto
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class GenreServiceImpl(val genreRepository: GenreRepository) : GenreService {
@@ -17,7 +16,9 @@ class GenreServiceImpl(val genreRepository: GenreRepository) : GenreService {
         return genreRepository.findAll().map(genreDtoTransformer)
     }
 
-    override fun get(id : Long?): Optional<GenreDto> {
-        return genreRepository.findById(id).map(genreDtoTransformer)
+    override fun get(id : Long): GenreDto {
+        return genreRepository.findById(id)
+                .map(genreDtoTransformer)
+                .orElse(null)
     }
 }

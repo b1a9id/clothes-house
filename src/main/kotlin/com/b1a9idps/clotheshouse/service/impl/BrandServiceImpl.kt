@@ -5,7 +5,6 @@ import com.b1a9idps.clotheshouse.repository.BrandRepository
 import com.b1a9idps.clotheshouse.service.BrandService
 import com.b1a9idps.clotheshouse.service.dto.BrandDto
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class BrandServiceImpl (val brandRepository: BrandRepository): BrandService {
@@ -16,7 +15,9 @@ class BrandServiceImpl (val brandRepository: BrandRepository): BrandService {
         return brandRepository.findAll().mapNotNull(brandDtoTransformer)
     }
 
-    override fun get(id : Long?): Optional<BrandDto> {
-        return brandRepository.findById(id).map(brandDtoTransformer)
+    override fun get(id : Long): BrandDto {
+        return brandRepository.findById(id)
+                .map(brandDtoTransformer)
+                .orElse(null)
     }
 }

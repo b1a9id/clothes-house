@@ -5,7 +5,6 @@ import com.b1a9idps.clotheshouse.repository.ColorRepository
 import com.b1a9idps.clotheshouse.service.ColorService
 import com.b1a9idps.clotheshouse.service.dto.ColorDto
 import org.springframework.stereotype.Service
-import java.util.*
 
 @Service
 class ColorServiceImpl(val colorRepository: ColorRepository) : ColorService {
@@ -17,7 +16,9 @@ class ColorServiceImpl(val colorRepository: ColorRepository) : ColorService {
         return colorRepository.findAll().mapNotNull(colorDtoTransformer)
     }
 
-    override fun get(id: Long?): Optional<ColorDto> {
-        return colorRepository.findById(id).map(colorDtoTransformer)
+    override fun get(id: Long): ColorDto {
+        return colorRepository.findById(id)
+                .map(colorDtoTransformer)
+                .orElse(null)
     }
 }
