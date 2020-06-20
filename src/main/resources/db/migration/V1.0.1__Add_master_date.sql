@@ -52,4 +52,4 @@ insert into genre (name, category_id) values
     ('Socks', (select id from category where name = 'SOCKS'));
 
 insert into item (brand_id, genre_id, color_id, image_url) values
-    ((select id from brand where name = 'ETHOSENS'), (select id from genre where name = 'Shirts'), (select id from color where name = 'BLUE'), 'https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpghttps://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg');
+    ((select id from brand where name = 'ETHOSENS'), (select id from genre where name = 'Shirts'), (select id from color where name = 'BLUE'), 'https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg');
