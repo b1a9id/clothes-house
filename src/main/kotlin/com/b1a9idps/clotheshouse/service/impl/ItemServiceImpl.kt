@@ -1,28 +1,32 @@
 package com.b1a9idps.clotheshouse.service.impl
 
+import com.b1a9idps.clotheshouse.repository.ColorRepository
+import com.b1a9idps.clotheshouse.repository.ItemRepository
+import com.b1a9idps.clotheshouse.service.BrandService
+import com.b1a9idps.clotheshouse.service.ColorService
+import com.b1a9idps.clotheshouse.service.GenreService
 import com.b1a9idps.clotheshouse.service.ItemService
-import com.b1a9idps.clotheshouse.service.dto.BrandDto
-import com.b1a9idps.clotheshouse.service.dto.ColorDto
-import com.b1a9idps.clotheshouse.service.dto.GenreDto
 import com.b1a9idps.clotheshouse.service.dto.ItemDto
 import org.springframework.stereotype.Service
-import java.net.URI
+import java.util.stream.Collectors
 
 @Service
-class ItemServiceImpl : ItemService {
+class ItemServiceImpl(
+        val itemRepository: ItemRepository,
+        val brandService: BrandService,
+        val colorService: ColorService,
+        val genreService: GenreService) : ItemService {
     override fun list() : List<ItemDto> {
-        val item1 = ItemDto(
-                1,
-                URI("https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg"),
-                BrandDto(1, "ETHOSENS"),
-                ColorDto(1, "Black"),
-                GenreDto(1, "Shirts"))
-        val item2 = ItemDto(
-                2,
-                URI("https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg"),
-                BrandDto(1, "ETHOSENS"),
-                ColorDto(1, "Black"),
-                GenreDto(1, "Shirts"))
-        return listOf(item1, item2)
+        val items = itemRepository.findAll()
+
+        val itemDtoList: MutableList<ItemDto> = mutableListOf()
+        for (item in items) {
+            brandService.get(item.brandId)
+            colorService.get(item.colorId)
+            genreService.get(item.genreId)
+        }
+        return items.stream()
+                .map { item -> ItemDto.newInstance(item = item) }
+                .collect(Collectors.toList())
     }
 }
