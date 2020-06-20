@@ -6,8 +6,10 @@ plugins {
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("com.github.node-gradle.node") version "2.2.4"
 	id("com.google.cloud.tools.jib") version "2.3.0"
-	kotlin("jvm") version "1.3.71"
+	kotlin("jvm") version "1.3.72"
 	kotlin("plugin.spring") version "1.3.72"
+	kotlin("plugin.allopen") version "1.3.72"
+	kotlin("plugin.jpa") version "1.3.72"
 }
 
 group = "com.b1a9idps"
@@ -85,3 +87,10 @@ tasks.withType<KotlinCompile> {
 		jvmTarget = "11"
 	}
 }
+
+allOpen {
+	annotation("javax.persistence.Entity")
+	annotation("javax.persistence.Embeddable")
+	annotation("javax.persistence.MappedSuperclass")
+}
+
