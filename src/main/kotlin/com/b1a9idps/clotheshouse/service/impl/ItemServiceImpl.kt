@@ -14,6 +14,7 @@ class ItemServiceImpl(
         val brandService: BrandService,
         val colorService: ColorService,
         val genreService: GenreService) : ItemService {
+
     override fun list() : List<ItemDto> {
         val items = itemRepository.findAll()
 
