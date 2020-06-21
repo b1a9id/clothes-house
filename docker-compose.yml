@@ -1,0 +1,12 @@
+postgersql:
+  image: postgres:12
+  container_name: clothes_house_postgres
+  ports:
+    - 55432:5432
+  environment:
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: clothes-house
+    POSTGRES_INITDB_ARGS: "--encoding=UTF-8"
+  restart: always
+  user: root
