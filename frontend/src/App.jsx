@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Route, Switch } from "react-router";
-import Closet from "./components/Closet";
+import Closet from "./containers/Closet";
 import Setting from "./components/Setting";
 import Nav from "./containers/Nav";
 import AppBar from '@material-ui/core/AppBar';

@@ -8,30 +8,35 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import CardActions from "@material-ui/core/CardActions";
 import CardActionArea from "@material-ui/core/CardActionArea";
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-  toolbar: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    padding: theme.spacing(3),
-  },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
-  media: {
-    height: 140,
-  },
-}));
+import PropTypes from 'prop-types';
 
 export default class Closet extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.state = props.onMount();
+  }
+
   render() {
-    const classes = useStyles();
+    // TODO
+    const classes = makeStyles((theme) => ({
+      root: {
+        display: 'flex',
+      },
+      toolbar: theme.mixins.toolbar,
+      content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+      },
+      paper: {
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary,
+      },
+      media: {
+        height: 140,
+      },
+    }));
 
     return (
       <main className={classes.content}>
@@ -137,4 +142,8 @@ export default class Closet extends React.Component {
       </main>
     );
   }
+}
+
+Closet.propTypes = {
+  onMount: PropTypes.func.isRequired
 }
