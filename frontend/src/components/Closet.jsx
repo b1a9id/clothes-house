@@ -14,7 +14,9 @@ export default class Closet extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = props.onMount();
+    this.state = {
+      items: props.onMount()
+    };
   }
 
   render() {
@@ -38,106 +40,38 @@ export default class Closet extends React.Component {
       },
     }));
 
+    const { items } = this.props;
+
     return (
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <Grid container spacing={3}>
-          <Grid item xs={6} sm={3}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg"
-                  title="ETHOSENS1"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    ETHOSENS
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Shirts
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-706a.jpg"
-                  title="ETHOSENS2"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    ETHOSENS
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Pants
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-207a.jpg"
-                  title="ETHOSENS1"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    ETHOSENS
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Shirts
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </CardActionArea>
-            </Card>
-          </Grid>
-          <Grid item xs={6} sm={3}>
-            <Card className={classes.root}>
-              <CardActionArea>
-                <CardMedia
-                  className={classes.media}
-                  image="https://www.ethosens.com/onlinestore/wp-content/uploads/2019/12/e120-706a.jpg"
-                  title="ETHOSENS2"
-                />
-                <CardContent>
-                  <Typography gutterBottom variant="h5" component="h2">
-                    ETHOSENS
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary" component="p">
-                    Pants
-                  </Typography>
-                </CardContent>
-                <CardActions>
-                  <Button size="small" color="primary">
-                    Learn More
-                  </Button>
-                </CardActions>
-              </CardActionArea>
-            </Card>
-          </Grid>
+          {items.map(item => (
+            <Grid item xs={6} sm={3}>
+              <Card className={classes.root}>
+                <CardActionArea>
+                  <CardMedia
+                    className={classes.media}
+                    image={item.imageUrl}
+                    title="ETHOSENS1"
+                  />
+                  <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                      {item.brand.name}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                      {item.genre.name}
+                    </Typography>
+                  </CardContent>
+                  <CardActions>
+                    <Button size="small" color="primary">
+                      Learn More
+                    </Button>
+                  </CardActions>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </main>
     );
@@ -145,5 +79,26 @@ export default class Closet extends React.Component {
 }
 
 Closet.propTypes = {
-  onMount: PropTypes.func.isRequired
+  onMount: PropTypes.func.isRequired,
+
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      imageUrl: PropTypes.string.isRequired,
+      brand: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+      }),
+      color: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.number.isRequired
+      }),
+      genre: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        name: PropTypes.string.isRequired,
+        categoryName: PropTypes.string.isRequired
+      })
+    })
+  ),
+  error: PropTypes.bool.isRequired
 }

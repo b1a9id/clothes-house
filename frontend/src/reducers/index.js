@@ -1,1 +1,1 @@
-export const noop = (state = {}) => state;
+export { default as Closet } from './Closet';
