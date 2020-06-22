@@ -19,6 +19,15 @@ export default class Closet extends React.Component {
     };
   }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (prevState.items !== nextProps.items) {
+      return {
+        items: nextProps.items
+      }
+    }
+    return null;
+  }
+
   render() {
     // TODO
     const classes = makeStyles((theme) => ({
@@ -40,7 +49,7 @@ export default class Closet extends React.Component {
       },
     }));
 
-    const { items } = this.props;
+    const { items } = this.state;
 
     return (
       <main className={classes.content}>
