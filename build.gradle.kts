@@ -13,7 +13,7 @@ plugins {
 }
 
 group = "com.b1a9idps"
-version = "1.0.0"
+version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 java.targetCompatibility = JavaVersion.VERSION_11
 
@@ -94,6 +94,3 @@ allOpen {
 	annotation("javax.persistence.MappedSuperclass")
 }
 
-tasks.bootJar {
-	archiveFileName.set("clothes-house.jar")
-}
