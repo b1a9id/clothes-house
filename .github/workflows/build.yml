@@ -21,16 +21,4 @@ jobs:
       with:
         java-version: 11
     - name: Build with Gradle and create Dockerfile
-      run: ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
-    - name: Login to Heroku Container registry
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:login
-    - name: Push to heroku
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: docker push registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
-    - name: Release 
-      env:
-        HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-      run: heroku container:release -a ${{secrets.HEROKU_APP_NAME}} web
+      run: ./gradlew build
