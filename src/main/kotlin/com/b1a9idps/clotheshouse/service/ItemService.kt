@@ -4,4 +4,5 @@ import com.b1a9idps.clotheshouse.service.dto.ItemDto
 
 interface ItemService {
     fun list() : List<ItemDto>
+    fun get(id : Long) : ItemDto
 }

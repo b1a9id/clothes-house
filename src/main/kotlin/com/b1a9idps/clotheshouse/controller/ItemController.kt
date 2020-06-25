@@ -3,6 +3,7 @@ package com.b1a9idps.clotheshouse.controller
 import com.b1a9idps.clotheshouse.service.ItemService
 import com.b1a9idps.clotheshouse.service.dto.ItemDto
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -14,5 +15,10 @@ class ItemController(
     @GetMapping
     fun list() : List<ItemDto> {
         return itemService.list()
+    }
+
+    @GetMapping("{id}")
+    fun get(@PathVariable id : Long) : ItemDto {
+        return itemService.get(id)
     }
 }
