@@ -22,7 +22,7 @@ jobs:
       with:
         java-version: 11
     - name: Change .env file
-      run: rm frontend/.env && echo 'REACT_APP_API_URL=https://clothes-house.herokuapp.com' > frontend/.env
+      run: rm frontend/.env && echo 'REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com' > frontend/.env
     - name: Build with Gradle and create Dockerfile
       run: ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
     - name: Login to Heroku Container registry
