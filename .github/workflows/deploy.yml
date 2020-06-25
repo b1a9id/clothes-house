@@ -21,10 +21,8 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Change .env file
-      run: rm frontend/.env && echo 'REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com' > frontend/.env
     - name: Build with Gradle and create Dockerfile
-      run: ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
+      run: rm frontend/.env && echo REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com > frontend/.env && ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
     - name: Login to Heroku Container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
