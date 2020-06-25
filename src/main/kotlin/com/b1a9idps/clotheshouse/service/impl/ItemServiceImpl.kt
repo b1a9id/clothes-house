@@ -27,7 +27,6 @@ class ItemServiceImpl(
     }
 
     override fun get(id: Long): ItemDto {
-        // TODO
         return itemRepository.findById(id)
                 .map{ item -> convert(item) }
                 .orElse(null)
