@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.css';
 import { Route, Switch } from "react-router";
 import Closet from "./containers/Closet";
 import Setting from "./components/Setting";
