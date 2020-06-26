@@ -48,7 +48,6 @@ class Closet extends React.Component {
   }
 
   render() {
-    // TODO
     const { classes } = this.props;
     const { items } = this.state;
 
