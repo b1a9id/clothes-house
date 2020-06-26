@@ -1,6 +1,6 @@
 import React from 'react';
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -10,7 +10,26 @@ import CardActions from "@material-ui/core/CardActions";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import PropTypes from 'prop-types';
 
-export default class Closet extends React.Component {
+const styles = theme => ({
+  root: {
+    display: 'flex',
+  },
+  toolbar: theme.mixins.toolbar,
+  content: {
+    flexGrow: 1,
+    padding: theme.spacing(3),
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+  media: {
+    height: 140,
+  },
+});
+
+class Closet extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,25 +49,7 @@ export default class Closet extends React.Component {
 
   render() {
     // TODO
-    const classes = makeStyles((theme) => ({
-      root: {
-        display: 'flex',
-      },
-      toolbar: theme.mixins.toolbar,
-      content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
-      },
-      paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      },
-      media: {
-        height: 140,
-      },
-    }));
-
+    const { classes } = this.props;
     const { items } = this.state;
 
     return (
@@ -88,6 +89,7 @@ export default class Closet extends React.Component {
 }
 
 Closet.propTypes = {
+  classes: PropTypes.object.isRequired,
   onMount: PropTypes.func.isRequired,
 
   items: PropTypes.arrayOf(
@@ -111,3 +113,5 @@ Closet.propTypes = {
   ),
   error: PropTypes.bool.isRequired
 }
+
+export default withStyles(styles)(Closet);
