@@ -7,7 +7,7 @@ data class BrandDto (
         val name: String) {
     companion object {
         fun newInstance(brand : Brand) : BrandDto{
-            return BrandDto(brand.id, brand.name)
+            return BrandDto(brand.id!!, brand.name)
         }
     }
 }

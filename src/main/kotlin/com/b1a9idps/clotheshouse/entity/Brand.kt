@@ -4,9 +4,9 @@ import javax.persistence.*
 
 @Entity
 class Brand(
+        var name: String,
         @Id
         @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "brand_seq_gen")
         @SequenceGenerator(name = "brand_seq_gen", sequenceName = "brand_seq", allocationSize = 1)
-        var id: Long,
-        var name: String
+        var id: Long? = null
 )
