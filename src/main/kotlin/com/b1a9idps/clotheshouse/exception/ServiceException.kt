@@ -1,6 +1,6 @@
 package com.b1a9idps.clotheshouse.exception
 
-class ServiceException : RuntimeException {
+open class ServiceException : RuntimeException {
     constructor() : super()
     constructor(message : String) : super(message)
     constructor(throwable: Throwable) : super(throwable)
