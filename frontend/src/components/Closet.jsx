@@ -31,6 +31,14 @@ const styles = theme => ({
   media: {
     height: 140,
   },
+  addButton: {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed'
+  }
 });
 
 class Closet extends React.Component {
@@ -86,7 +94,9 @@ class Closet extends React.Component {
             </Grid>
           ))}
         </Grid>
-        <Fab color="primary" aria-label="add"><AddIcon /></Fab>
+        <Grid container justify="flex-end" spacing={3}>
+          <Fab color="primary" aria-label="add" className={classes.addButton}><AddIcon /></Fab>
+        </Grid>
       </main>
     );
   }
