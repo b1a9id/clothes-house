@@ -1,5 +1,6 @@
 package com.b1a9idps.clotheshouse.service.impl
 
+import com.b1a9idps.clotheshouse.assert.BrandAssert
 import com.b1a9idps.clotheshouse.entity.Brand
 import com.b1a9idps.clotheshouse.repository.BrandRepository
 import org.assertj.core.api.Assertions
@@ -32,10 +33,8 @@ internal class BrandServiceImplTest {
         val brand = Brand("stof", 1)
         Mockito.`when`(brandRepository.findById(eq(1L))).thenReturn(Optional.of(brand))
 
-        Assertions.assertThat(brandService.get(1))
-                .extracting("id", "name")
-                .containsExactly(1L, "stof")
-
-
+        BrandAssert.assertThat(brandService.get(1))
+                .hasId(1L)
+                .hasName("stof")
     }
 }
