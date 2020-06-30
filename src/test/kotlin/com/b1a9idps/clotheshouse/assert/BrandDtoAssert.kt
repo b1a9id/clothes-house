@@ -1,18 +1,18 @@
 package com.b1a9idps.clotheshouse.assert
 
-import com.b1a9idps.clotheshouse.entity.Brand
+import com.b1a9idps.clotheshouse.service.dto.BrandDto
 import org.assertj.core.api.AbstractAssert
 import java.util.*
 
-class BrandAssert(brand: Brand) : AbstractAssert<BrandAssert, Brand>(brand, BrandAssert::class.java) {
+class BrandDtoAssert(brandDto: BrandDto) : AbstractAssert<BrandDtoAssert, BrandDto>(brandDto, BrandDtoAssert::class.java) {
 
     companion object {
-        fun assertThat(brand: Brand) : BrandAssert {
-            return BrandAssert(brand)
+        fun assertThat(brandDto: BrandDto) : BrandDtoAssert {
+            return BrandDtoAssert(brandDto)
         }
     }
 
-    fun hasId(id : Long) : BrandAssert {
+    fun hasId(id : Long) : BrandDtoAssert {
         isNotNull
         if (!Objects.equals(id, actual.id)) {
             failWithMessage(
@@ -21,7 +21,7 @@ class BrandAssert(brand: Brand) : AbstractAssert<BrandAssert, Brand>(brand, Bran
         return this
     }
 
-    fun hasName(name : String) : BrandAssert {
+    fun hasName(name : String) : BrandDtoAssert {
         isNotNull
         if (!Objects.equals(name, actual.name)) {
             failWithMessage(
