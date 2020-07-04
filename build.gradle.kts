@@ -2,6 +2,7 @@ import com.moowork.gradle.node.yarn.YarnTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+	jacoco
 	id("org.springframework.boot") version "2.3.0.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("com.github.node-gradle.node") version "2.2.4"
@@ -79,6 +80,17 @@ tasks.jibDockerBuild {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+	finalizedBy(tasks.jacocoTestReport)
+}
+
+tasks.jacocoTestReport {
+	dependsOn(tasks.test)
+	reports {
+		xml.isEnabled = true
+		xml.destination = file("${buildDir}/reports/jacoco/report.xml")
+		csv.isEnabled = false
+		html.isEnabled = false
+	}
 }
 
 tasks.withType<KotlinCompile> {
