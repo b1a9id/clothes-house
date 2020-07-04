@@ -22,7 +22,7 @@ jobs:
       with:
         java-version: 11
     - name: Execute test
-      run: ./gradlew test
+      run: ./gradlew build
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v1
       with:
