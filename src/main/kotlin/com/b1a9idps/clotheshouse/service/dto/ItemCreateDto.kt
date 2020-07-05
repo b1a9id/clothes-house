@@ -10,10 +10,10 @@ data class ItemCreateDto(
     companion object {
         fun newInstance(request : ItemCreateRequest) : ItemCreateDto {
             return ItemCreateDto (
-                    request.imageUrl,
-                    request.brandId,
-                    request.genreId,
-                    request.colorId)
+                    request.imageUrl!!,
+                    request.brandId!!,
+                    request.genreId!!,
+                    request.colorId!!)
         }
     }
 }
