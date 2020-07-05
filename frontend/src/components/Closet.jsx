@@ -1,14 +1,19 @@
 import React from 'react';
-import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
-import CardActions from "@material-ui/core/CardActions";
-import CardActionArea from "@material-ui/core/CardActionArea";
+import {
+  CardActionArea,
+  Typography,
+  Grid,
+  CardMedia,
+  CardContent,
+  Button,
+  Fab,
+  CardActions,
+  Card
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import PropTypes from 'prop-types';
+import AddDialog from "./common/AddDialog";
 
 const styles = theme => ({
   root: {
@@ -27,6 +32,14 @@ const styles = theme => ({
   media: {
     height: 140,
   },
+  addButton: {
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed'
+  }
 });
 
 class Closet extends React.Component {
@@ -34,22 +47,33 @@ class Closet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: props.onMount()
+      items: props.onMount(),
+      openedModal: false,
     };
+    this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
+    this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this);
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
     if (prevState.items !== nextProps.items) {
       return {
-        items: nextProps.items
+        items: nextProps.items,
       }
     }
     return null;
   }
 
+  handleOpenAddDialog() {
+    this.setState( { openedModal : true });
+  }
+
+  handleCloseAddDialog() {
+    this.setState( { openedModal : false });
+  }
+
   render() {
     const { classes } = this.props;
-    const { items } = this.state;
+    const { items, openedModal } = this.state;
 
     return (
       <main className={classes.content}>
@@ -82,6 +106,10 @@ class Closet extends React.Component {
             </Grid>
           ))}
         </Grid>
+        <Grid container justify="flex-end" spacing={3}>
+          <Fab color="primary" aria-label="add" className={classes.addButton} onClick={this.handleOpenAddDialog}><AddIcon /></Fab>
+        </Grid>
+        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} />
       </main>
     );
   }
