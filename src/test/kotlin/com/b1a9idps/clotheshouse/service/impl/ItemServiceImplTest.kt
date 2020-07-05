@@ -26,8 +26,8 @@ internal class ItemServiceImplTest {
         val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
 
         val items = listOf(
-                Item(1, 1, 1, 1, "https://b1a9idps.com"),
-                Item(2, 2, 2, 2, "https://b1a9idps.com"))
+                Item(1, 1, 1, "https://b1a9idps.com", 1),
+                Item(2, 2, 2, "https://b1a9idps.com", 2))
 
         Mockito.`when`(itemRepository.findAll()).thenReturn(items)
         Mockito.`when`(brandService.get(eq(1L))).thenReturn(BrandDto(1, "stof"))
@@ -61,7 +61,7 @@ internal class ItemServiceImplTest {
         val genreService = Mockito.mock(GenreService::class.java)
         val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
 
-        val item = Item(1, 1, 1, 1, "https://b1a9idps.com")
+        val item = Item(1, 1, 1,"https://b1a9idps.com", 1)
         Mockito.`when`(itemRepository.findById(eq(1L))).thenReturn(Optional.of(item))
         Mockito.`when`(brandService.get(eq(1L))).thenReturn(BrandDto(1, "stof"))
         Mockito.`when`(colorService.get(eq(1L))).thenReturn(ColorDto(1, "BLACK"))
