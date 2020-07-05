@@ -1,5 +1,6 @@
 package com.b1a9idps.clotheshouse.service.impl
 
+import com.b1a9idps.clotheshouse.annotation.CustomTransactional
 import com.b1a9idps.clotheshouse.entity.Item
 import com.b1a9idps.clotheshouse.repository.ItemRepository
 import com.b1a9idps.clotheshouse.service.BrandService
@@ -33,6 +34,7 @@ class ItemServiceImpl(
                 .orElse(null)
     }
 
+    @CustomTransactional
     override fun create(request: ItemCreateDto) {
         val item = Item(request.brandId, request.genreId, request.colorId, request.imageUrl)
         itemRepository.save(item)
