@@ -1,6 +1,9 @@
 package com.b1a9idps.clotheshouse.entity
 
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class Item (
@@ -9,7 +12,6 @@ class Item (
         var colorId: Long,
         var imageUrl: String,
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_seq_gen")
-        @SequenceGenerator(name = "item_seq_gen", sequenceName = "item_seq", allocationSize = 1)
-        var id: Long? = null
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        var id: Long? = -1
 )
