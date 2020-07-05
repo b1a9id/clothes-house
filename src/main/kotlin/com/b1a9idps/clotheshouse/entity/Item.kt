@@ -13,5 +13,5 @@ class Item (
         var imageUrl: String,
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var id: Long? = -1
+        var id: Long? = null
 )
