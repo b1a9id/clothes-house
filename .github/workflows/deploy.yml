@@ -21,14 +21,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Execute test
-      run: ./gradlew build
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v1
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }}
-        file: ./build/reports/jacoco/report.xml
-        fail_ci_if_error: true
     - name: Build with Gradle and create Dockerfile
       run: rm frontend/.env && echo REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com > frontend/.env && cat frontend/.env && ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
     - name: Login to Heroku Container registry
