@@ -8,9 +8,11 @@ import com.b1a9idps.clotheshouse.service.GenreService
 import com.b1a9idps.clotheshouse.service.dto.BrandDto
 import com.b1a9idps.clotheshouse.service.dto.ColorDto
 import com.b1a9idps.clotheshouse.service.dto.GenreDto
+import com.b1a9idps.clotheshouse.service.dto.ItemCreateDto
 import org.assertj.core.api.Assertions
 import org.assertj.core.groups.Tuple
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito
 import java.util.*
@@ -79,6 +81,20 @@ internal class ItemServiceImplTest {
                         "genre.name",
                         "genre.categoryName")
                 .containsExactly(1L, "https://b1a9idps.com", 1L, "stof", 1L, "BLACK", 1L, "Shirts", "TOPS")
+    }
+
+    @Test
+    fun create() {
+        val itemRepository = Mockito.mock(ItemRepository::class.java)
+        val brandService = Mockito.mock(BrandService::class.java)
+        val colorService = Mockito.mock(ColorService::class.java)
+        val genreService = Mockito.mock(GenreService::class.java)
+        val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
+
+        val request = ItemCreateDto("https://b1a9idps.com", 1L, 1L, 1L)
+        itemService.create(request)
+
+        Mockito.verify(itemRepository).save(any(Item::class.java))
     }
     
 }
