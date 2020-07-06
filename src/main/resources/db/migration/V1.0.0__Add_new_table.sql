@@ -1,9 +1,3 @@
-create sequence brand_seq as bigint;
-create sequence category_seq as bigint;
-create sequence color_seq as bigint;
-create sequence genre_seq as bigint;
-create sequence item_seq as bigint;
-
 create table brand (
     id bigint primary key generated always as identity not null,
     name varchar(255) not null
