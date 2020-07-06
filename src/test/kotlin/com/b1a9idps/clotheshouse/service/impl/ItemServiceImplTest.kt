@@ -8,9 +8,11 @@ import com.b1a9idps.clotheshouse.service.GenreService
 import com.b1a9idps.clotheshouse.service.dto.BrandDto
 import com.b1a9idps.clotheshouse.service.dto.ColorDto
 import com.b1a9idps.clotheshouse.service.dto.GenreDto
+import com.b1a9idps.clotheshouse.service.dto.ItemCreateDto
 import org.assertj.core.api.Assertions
 import org.assertj.core.groups.Tuple
 import org.junit.jupiter.api.Test
+import org.mockito.ArgumentMatchers.any
 import org.mockito.ArgumentMatchers.eq
 import org.mockito.Mockito
 import java.util.*
@@ -26,8 +28,8 @@ internal class ItemServiceImplTest {
         val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
 
         val items = listOf(
-                Item(1, 1, 1, 1, "https://b1a9idps.com"),
-                Item(2, 2, 2, 2, "https://b1a9idps.com"))
+                Item(1, 1, 1, "https://b1a9idps.com", 1),
+                Item(2, 2, 2, "https://b1a9idps.com", 2))
 
         Mockito.`when`(itemRepository.findAll()).thenReturn(items)
         Mockito.`when`(brandService.get(eq(1L))).thenReturn(BrandDto(1, "stof"))
@@ -61,7 +63,7 @@ internal class ItemServiceImplTest {
         val genreService = Mockito.mock(GenreService::class.java)
         val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
 
-        val item = Item(1, 1, 1, 1, "https://b1a9idps.com")
+        val item = Item(1, 1, 1,"https://b1a9idps.com", 1)
         Mockito.`when`(itemRepository.findById(eq(1L))).thenReturn(Optional.of(item))
         Mockito.`when`(brandService.get(eq(1L))).thenReturn(BrandDto(1, "stof"))
         Mockito.`when`(colorService.get(eq(1L))).thenReturn(ColorDto(1, "BLACK"))
@@ -79,6 +81,20 @@ internal class ItemServiceImplTest {
                         "genre.name",
                         "genre.categoryName")
                 .containsExactly(1L, "https://b1a9idps.com", 1L, "stof", 1L, "BLACK", 1L, "Shirts", "TOPS")
+    }
+
+    @Test
+    fun create() {
+        val itemRepository = Mockito.mock(ItemRepository::class.java)
+        val brandService = Mockito.mock(BrandService::class.java)
+        val colorService = Mockito.mock(ColorService::class.java)
+        val genreService = Mockito.mock(GenreService::class.java)
+        val itemService = ItemServiceImpl(itemRepository, brandService, colorService, genreService)
+
+        val request = ItemCreateDto("https://b1a9idps.com", 1L, 1L, 1L)
+        itemService.create(request)
+
+        Mockito.verify(itemRepository).save(any(Item::class.java))
     }
     
 }

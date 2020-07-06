@@ -16,7 +16,7 @@ internal class CategoryServiceImplTest {
         val categoryRepository = Mockito.mock(CategoryRepository::class.java)
         val categoryService = CategoryServiceImpl(categoryRepository)
 
-        val categories = listOf(Category(1, "TOPS"), Category(2, "OUTER"))
+        val categories = listOf(Category("TOPS", 1), Category("OUTER", 2))
         Mockito.`when`(categoryRepository.findAll()).thenReturn(categories)
 
         Assertions.assertThat(categoryService.list())
@@ -29,7 +29,7 @@ internal class CategoryServiceImplTest {
         val categoryRepository = Mockito.mock(CategoryRepository::class.java)
         val categoryService = CategoryServiceImpl(categoryRepository)
 
-        val category = Category(1, "TOPS")
+        val category = Category("TOPS", 1)
         Mockito.`when`(categoryRepository.findById(eq(1L))).thenReturn(Optional.of(category))
 
         Assertions.assertThat(categoryService.get(1))

@@ -10,7 +10,7 @@ data class ItemDto (
     val genre: GenreDto) {
     companion object {
         fun newInstance(item : Item, brand : BrandDto, color : ColorDto, genre : GenreDto) : ItemDto {
-            return ItemDto(item.id, item.imageUrl, brand, color, genre)
+            return ItemDto(item.id!!, item.imageUrl, brand, color, genre)
         }
     }
 }

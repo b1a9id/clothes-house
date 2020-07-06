@@ -1,12 +1,14 @@
 package com.b1a9idps.clotheshouse.entity
 
-import javax.persistence.*
+import javax.persistence.Entity
+import javax.persistence.GeneratedValue
+import javax.persistence.GenerationType
+import javax.persistence.Id
 
 @Entity
 class Color(
+        var name: String,
         @Id
-        @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "color_seq_gen")
-        @SequenceGenerator(name = "color_seq_gen", sequenceName = "color_seq", allocationSize = 1)
-        var id: Long,
-        var name: String
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        var id: Long
 )

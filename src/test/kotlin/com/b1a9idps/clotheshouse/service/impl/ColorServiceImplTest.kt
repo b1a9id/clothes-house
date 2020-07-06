@@ -16,7 +16,7 @@ internal class ColorServiceImplTest {
         val colorRepository = Mockito.mock(ColorRepository::class.java)
         val colorService = ColorServiceImpl(colorRepository)
 
-        val colors = listOf(Color(1, "BLACK"), Color(2, "WHITE"))
+        val colors = listOf(Color("BLACK", 1), Color("WHITE", 2))
         Mockito.`when`(colorRepository.findAll()).thenReturn(colors)
 
         Assertions.assertThat(colorService.list())
@@ -29,7 +29,7 @@ internal class ColorServiceImplTest {
         val colorRepository = Mockito.mock(ColorRepository::class.java)
         val colorService = ColorServiceImpl(colorRepository)
 
-        val color = Color(1, "BLACK")
+        val color = Color("BLACK", 1)
         Mockito.`when`(colorRepository.findById(eq(1L))).thenReturn(Optional.of(color))
 
         Assertions.assertThat(colorService.get(1))

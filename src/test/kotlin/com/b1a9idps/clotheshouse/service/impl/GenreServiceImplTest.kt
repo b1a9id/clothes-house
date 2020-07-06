@@ -19,7 +19,7 @@ internal class GenreServiceImplTest {
         val categoryService = Mockito.mock(CategoryService::class.java)
         val genreService = GenreServiceImpl(genreRepository, categoryService)
 
-        val genres = listOf(Genre(1, "Shirts", 1), Genre(2, "Coat", 2))
+        val genres = listOf(Genre("Shirts", 1, 1), Genre("Coat", 2, 2))
         Mockito.`when`(genreRepository.findAll()).thenReturn(genres)
 
         Mockito.`when`(categoryService.get(eq(1L))).thenReturn(CategoryDto(1, "TOPS"))
@@ -36,7 +36,7 @@ internal class GenreServiceImplTest {
         val categoryService = Mockito.mock(CategoryService::class.java)
         val genreService = GenreServiceImpl(genreRepository, categoryService)
 
-        Mockito.`when`(genreRepository.findById(eq(1L))).thenReturn(Optional.of(Genre(1, "Shirts", 1)))
+        Mockito.`when`(genreRepository.findById(eq(1L))).thenReturn(Optional.of(Genre("Shirts", 1, 1)))
         Mockito.`when`(categoryService.get(eq(1L))).thenReturn(CategoryDto(1, "TOPS"))
 
         Assertions.assertThat(genreService.get(1L))

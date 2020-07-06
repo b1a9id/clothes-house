@@ -1,11 +1,13 @@
 package com.b1a9idps.clotheshouse.service.impl
 
+import com.b1a9idps.clotheshouse.annotation.CustomTransactional
 import com.b1a9idps.clotheshouse.entity.Item
 import com.b1a9idps.clotheshouse.repository.ItemRepository
 import com.b1a9idps.clotheshouse.service.BrandService
 import com.b1a9idps.clotheshouse.service.ColorService
 import com.b1a9idps.clotheshouse.service.GenreService
 import com.b1a9idps.clotheshouse.service.ItemService
+import com.b1a9idps.clotheshouse.service.dto.ItemCreateDto
 import com.b1a9idps.clotheshouse.service.dto.ItemDto
 import org.springframework.stereotype.Service
 
@@ -30,6 +32,12 @@ class ItemServiceImpl(
         return itemRepository.findById(id)
                 .map{ item -> convert(item) }
                 .orElse(null)
+    }
+
+    @CustomTransactional
+    override fun create(request: ItemCreateDto) {
+        val item = Item(request.brandId, request.genreId, request.colorId, request.imageUrl)
+        itemRepository.save(item)
     }
 
     private fun convert(item : Item) : ItemDto {
