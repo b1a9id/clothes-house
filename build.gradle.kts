@@ -1,6 +1,13 @@
 import com.moowork.gradle.node.yarn.YarnTask
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+extra["versions"] = mapOf(
+		"springBootVersion" to "2.3.0.RELEASE",
+		"testContainersVersion" to "1.14.3"
+)
+
+val versions: Map<String, String> by extra
+
 plugins {
 	jacoco
 	id("org.springframework.boot") version "2.3.0.RELEASE"
@@ -45,6 +52,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("org.testcontainers:testcontainers:${versions["testContainersVersion"]}")
+	testImplementation("org.testcontainers:junit-jupiter:${versions["testContainersVersion"]}")
+	testImplementation("org.testcontainers:postgresql:${versions["testContainersVersion"]}")
 //	testImplementation("org.springframework.security:spring-security-test")
 }
 
