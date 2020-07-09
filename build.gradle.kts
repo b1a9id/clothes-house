@@ -89,9 +89,12 @@ tasks.jibDockerBuild {
 	dependsOn(buildReact)
 }
 
-tasks.withType<Test> {
+tasks.test {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
+	configure<JacocoTaskExtension> {
+		excludes = listOf("**/annotation/**", "**/exception/**", "**/Application.kt")
+	}
 }
 
 tasks.jacocoTestReport {
@@ -101,19 +104,6 @@ tasks.jacocoTestReport {
 		xml.destination = file("${buildDir}/reports/jacoco/report.xml")
 		csv.isEnabled = false
 		html.isEnabled = false
-	}
-	afterEvaluate {
-		classDirectories.setFrom(
-				files(classDirectories.files.map {
-					fileTree(it).apply {
-						exclude(
-								"**/annotation/**",
-								"**/exception/**",
-								"**/Application.kt"
-						)
-					}
-				})
-		)
 	}
 }
 
