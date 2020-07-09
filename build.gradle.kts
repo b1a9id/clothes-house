@@ -92,9 +92,6 @@ tasks.jibDockerBuild {
 tasks.test {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
-	configure<JacocoTaskExtension> {
-		excludes = listOf("**/annotation/**", "**/exception/**", "**/Application.kt")
-	}
 }
 
 tasks.jacocoTestReport {
