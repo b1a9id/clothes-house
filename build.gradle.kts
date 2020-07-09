@@ -73,10 +73,6 @@ val buildReact by tasks.registering(YarnTask::class) {
 	})
 }
 
-tasks.named("yarn_install") {
-	dependsOn("yarn_cache_clean")
-}
-
 tasks.named("buildReact") {
 	dependsOn("yarn_install")
 }
