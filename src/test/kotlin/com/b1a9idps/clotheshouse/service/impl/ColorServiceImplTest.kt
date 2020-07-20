@@ -13,15 +13,18 @@ internal class ColorServiceImplTest {
 
     @Test
     fun list() {
+        val blackName = "BLACK"
+        val whiteName = "WHITE"
+
         val colorRepository = Mockito.mock(ColorRepository::class.java)
         val colorService = ColorServiceImpl(colorRepository)
 
-        val colors = listOf(Color("BLACK", 1), Color("WHITE", 2))
+        val colors = listOf(Color(blackName, 1), Color(whiteName, 2))
         Mockito.`when`(colorRepository.findAll()).thenReturn(colors)
 
         Assertions.assertThat(colorService.list())
                 .extracting("id", "name")
-                .containsExactly(Tuple.tuple(1L, "BLACK"), Tuple.tuple(2L, "WHITE"))
+                .containsExactly(Tuple.tuple(1L, blackName), Tuple.tuple(2L, whiteName))
     }
 
     @Test
