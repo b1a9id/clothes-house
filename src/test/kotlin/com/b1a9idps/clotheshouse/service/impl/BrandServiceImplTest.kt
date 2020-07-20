@@ -20,15 +20,18 @@ internal class BrandServiceImplTest {
 
     @Test
     fun list() {
+        val stof = "stof"
+        val bedsidedrama = "bedsidedrama"
+
         val brandRepository = Mockito.mock(BrandRepository::class.java)
         val brandService = BrandServiceImpl(brandRepository)
 
-        val brands = listOf(Brand("stof", 1), Brand("bedsidedrama", 2))
+        val brands = listOf(Brand(stof, 1), Brand(bedsidedrama, 2))
         Mockito.`when`(brandRepository.findAll()).thenReturn(brands)
 
         Assertions.assertThat(brandService.list())
                 .extracting("id", "name")
-                .containsExactly(Tuple.tuple(1L, "stof"), Tuple.tuple(2L, "bedsidedrama"))
+                .containsExactly(Tuple.tuple(1L, stof), Tuple.tuple(2L, bedsidedrama))
     }
 
     @Test

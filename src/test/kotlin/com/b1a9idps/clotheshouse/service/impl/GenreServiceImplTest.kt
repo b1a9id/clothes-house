@@ -15,19 +15,24 @@ internal class GenreServiceImplTest {
 
     @Test
     fun list() {
+        val shirtsName = "Shirts"
+        val coatName = "Coat"
+        val topsName = "TOPS"
+        val outerName = "OUTER"
+
         val genreRepository = Mockito.mock(GenreRepository::class.java)
         val categoryService = Mockito.mock(CategoryService::class.java)
         val genreService = GenreServiceImpl(genreRepository, categoryService)
 
-        val genres = listOf(Genre("Shirts", 1, 1), Genre("Coat", 2, 2))
+        val genres = listOf(Genre(shirtsName, 1, 1), Genre(coatName, 2, 2))
         Mockito.`when`(genreRepository.findAll()).thenReturn(genres)
 
-        Mockito.`when`(categoryService.get(eq(1L))).thenReturn(CategoryDto(1, "TOPS"))
-        Mockito.`when`(categoryService.get(eq(2L))).thenReturn(CategoryDto(2, "OUTER"))
+        Mockito.`when`(categoryService.get(eq(1L))).thenReturn(CategoryDto(1, topsName))
+        Mockito.`when`(categoryService.get(eq(2L))).thenReturn(CategoryDto(2, outerName))
 
         Assertions.assertThat(genreService.list())
                 .extracting("id", "name", "categoryName")
-                .containsExactly(Tuple.tuple(1L, "Shirts", "TOPS"), Tuple.tuple(2L, "Coat", "OUTER"))
+                .containsExactly(Tuple.tuple(1L, shirtsName, topsName), Tuple.tuple(2L, coatName, outerName))
     }
 
     @Test
