@@ -46,8 +46,9 @@ class Closet extends React.Component {
 
   constructor(props) {
     super(props);
+    const mounted = props.onMount();
     this.state = {
-      items: props.onMount(),
+      items: mounted.items,
       openedModal: false,
     };
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
@@ -117,7 +118,9 @@ class Closet extends React.Component {
 
 Closet.propTypes = {
   classes: PropTypes.object.isRequired,
-  onMount: PropTypes.func.isRequired,
+  onMount: PropTypes.shape({
+    items: PropTypes.func.isRequired
+  }).isRequired,
 
   items: PropTypes.arrayOf(
     PropTypes.shape({
