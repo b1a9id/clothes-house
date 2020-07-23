@@ -1,17 +1,18 @@
 import axios from "axios";
-import * as appConstants from '../constants/AppConstants'
+import * as appConstants from '../constants/AppConstants';
+import * as actionTypeConstants from "../constants/ActionTypeConstants";
 
 const startRequest = () => ({
-  type: 'START_REQUEST'
+  type: actionTypeConstants.ITEMS_START_REQUEST
 });
 
 const receiveData = (error, response) => ({
-  type: 'RECEIVE_DATA',
+  type: actionTypeConstants.ITEMS_RECEIVE_DATA,
   payload: { error, response }
 });
 
 const finishRequest = () => ({
-  type: 'FINISH_REQUEST'
+  type: actionTypeConstants.ITEMS_FINISH_REQUEST
 });
 
 export const getItems = () => {

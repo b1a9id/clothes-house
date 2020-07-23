@@ -1,3 +1,5 @@
+import * as actionTypeConstants from '../constants/ActionTypeConstants';
+
 const initialState = {
   items: [],
   error: false
@@ -5,12 +7,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case 'START_REQUEST':
+    case actionTypeConstants.ITEMS_START_REQUEST:
       return {
         items: [],
         error: false
       };
-    case 'RECEIVE_DATA':
+    case actionTypeConstants.ITEMS_RECEIVE_DATA:
       return action.payload.error ?
         { ...state, error: true } :
         { ...state, items: action.payload.response };
