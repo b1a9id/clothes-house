@@ -14,6 +14,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from 'prop-types';
 import AddDialog from "./common/AddDialog";
+import { startRequest, receiveData, finishRequest } from '../actions/Closet';
 
 const styles = theme => ({
   root: {
@@ -47,7 +48,7 @@ class Closet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: props.onMount(),
+      items: props.dispatch(startRequest()),
       openedModal: false,
     };
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
@@ -117,7 +118,6 @@ class Closet extends React.Component {
 
 Closet.propTypes = {
   classes: PropTypes.object.isRequired,
-  onMount: PropTypes.func.isRequired,
 
   items: PropTypes.arrayOf(
     PropTypes.shape({
