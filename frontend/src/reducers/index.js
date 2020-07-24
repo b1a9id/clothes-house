@@ -1,2 +1,2 @@
-export { default as Closet } from './Closet';
-export { default as AddDialog } from './AddDialog';
+export { default as Item } from './Item';
+export { default as Brand } from './Brand';
