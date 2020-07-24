@@ -1,9 +1,17 @@
 import { connect } from 'react-redux';
 import Closet from "../components/Closet";
+import { startRequest as itemsStartRequest } from "../actions/Item";
+import { startRequest as brandsStartRequest } from "../actions/Brand";
 
 const mapStateToProps = (state) => ({
-  items: state.Closet.items,
-  error: state.Closet.error
+  items: state.Item.items,
+  brands: state.Brand.brands,
+  error: state.Item.error
 })
 
-export default connect(mapStateToProps)(Closet);
+const mapDispatchToProps = dispatch => ({
+  getItems: () => dispatch(itemsStartRequest()),
+  getBrands: () => dispatch(brandsStartRequest())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Closet);

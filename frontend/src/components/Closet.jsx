@@ -14,7 +14,6 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from 'prop-types';
 import AddDialog from "./common/AddDialog";
-import { startRequest } from '../actions/Closet';
 
 const styles = theme => ({
   root: {
@@ -48,9 +47,12 @@ class Closet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: props.dispatch(startRequest()),
+      items: [],
+      brands: [],
       openedModal: false,
     };
+    props.getItems();
+    props.getBrands();
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
     this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this);
   }
@@ -59,6 +61,11 @@ class Closet extends React.Component {
     if (prevState.items !== nextProps.items) {
       return {
         items: nextProps.items,
+      }
+    }
+    if (prevState.brands !== nextProps.brands) {
+      return {
+        brands: nextProps.brands,
       }
     }
     return null;
@@ -74,7 +81,7 @@ class Closet extends React.Component {
 
   render() {
     const { classes } = this.props;
-    const { items, openedModal } = this.state;
+    const { items, openedModal, brands } = this.state;
 
     return (
       <main className={classes.content}>
@@ -110,7 +117,7 @@ class Closet extends React.Component {
         <Grid container justify="flex-end" spacing={3}>
           <Fab color="primary" aria-label="add" className={classes.addButton} onClick={this.handleOpenAddDialog}><AddIcon /></Fab>
         </Grid>
-        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} />
+        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} brands={brands} />
       </main>
     );
   }
