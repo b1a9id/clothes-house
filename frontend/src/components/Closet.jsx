@@ -53,8 +53,8 @@ class Closet extends React.Component {
       brands: [],
       openedModal: false,
     };
-    props.dispatch(itemsStartRequest());
-    props.dispatch(brandsStartRequest());
+    props.getItems();
+    props.getBrands();
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
     this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this);
   }
