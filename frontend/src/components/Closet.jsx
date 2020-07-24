@@ -14,7 +14,7 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from 'prop-types';
 import AddDialog from "./common/AddDialog";
-import { startRequest } from '../actions/Closet';
+import { startRequest as itemStartRequest } from '../actions/Item';
 
 const styles = theme => ({
   root: {
@@ -48,9 +48,10 @@ class Closet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: props.dispatch(startRequest()),
+      items: [],
       openedModal: false,
     };
+    props.dispatch(itemStartRequest());
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
     this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this);
   }

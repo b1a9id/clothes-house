@@ -1,16 +1,16 @@
 import { call, put, takeEvery} from 'redux-saga/effects';
-import { receiveData, finishRequest } from "../actions/Closet";
+import { receiveData as itemReceiveData, finishRequest as itemFinishRequest } from "../actions/Item";
 import * as actionType from '../constants/ActionType';
 import * as ItemApi from '../apis/Item';
 
 function* handleRequestItems() {
   try {
     const response = yield call(ItemApi.fetchItems);
-    yield put(receiveData(null, response.data));
+    yield put(itemReceiveData(null, response.data));
   } catch (error) {
-    yield put(receiveData(error));
+    yield put(itemReceiveData(error));
   }
-  yield put(finishRequest());
+  yield put(itemFinishRequest());
 }
 
 export default function* rootSaga() {
