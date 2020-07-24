@@ -3,6 +3,7 @@ import Closet from "../components/Closet";
 
 const mapStateToProps = (state) => ({
   items: state.Closet.items,
+  brands: state.AddDialog.brands,
   error: state.Closet.error
 })
 

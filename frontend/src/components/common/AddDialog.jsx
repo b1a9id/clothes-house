@@ -7,21 +7,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const brands = [
-  {
-    value: '1',
-    label: 'ETHOSENS'
-  },
-  {
-    value: '2',
-    label: 'STOF'
-  },
-  {
-    value: '3',
-    label: 'bedsidedrama'
-  }
-]
-
 const genres = [
   {
     value: '1',
@@ -95,8 +80,8 @@ export default function AddDialog(props) {
           onChange={handleBrandChange}
           fullWidth
         >
-          {brands.map((brand) => (
-            <MenuItem key={brand.value} value={brand.value}>{brand.label}</MenuItem>
+          {props.brands.map((brand) => (
+            <MenuItem key={brand.id} value={brand.id}>{brand.name}</MenuItem>
           ))}
         </TextField>
         <TextField
