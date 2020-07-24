@@ -14,8 +14,6 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import PropTypes from 'prop-types';
 import AddDialog from "./common/AddDialog";
-import { startRequest as itemsStartRequest } from '../actions/Item';
-import { startRequest as brandsStartRequest } from "../actions/Brand";
 
 const styles = theme => ({
   root: {
