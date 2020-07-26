@@ -88,7 +88,6 @@ tasks.jibDockerBuild {
 tasks.test {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
-	maxParallelForks = 3
 }
 
 tasks.jacocoTestReport {
@@ -116,4 +115,9 @@ allOpen {
 
 tasks.bootJar {
 	archiveFileName.set("clothes-house.jar")
+}
+
+tasks.wrapper {
+	gradleVersion = "6.5.1"
+	distributionType = Wrapper.DistributionType.ALL
 }
