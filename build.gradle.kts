@@ -88,6 +88,7 @@ tasks.jibDockerBuild {
 tasks.test {
 	useJUnitPlatform()
 	finalizedBy(tasks.jacocoTestReport)
+	maxParallelForks = 3
 }
 
 tasks.jacocoTestReport {
