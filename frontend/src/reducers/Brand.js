@@ -7,12 +7,12 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionType.BRANDS_START_REQUEST:
+    case actionType.START_GET_BRANDS:
       return {
         brands: [],
         error: false
       };
-    case actionType.BRANDS_RECEIVE_DATA:
+    case actionType.GET_BRANDS_RESPONSE:
       return action.payload.error ?
         { ...state, error: true } :
         { ...state, brands: action.payload.response };

@@ -3,16 +3,15 @@ import * as actionType from '../constants/ActionType';
 const initialState = {
   items: [],
   error: false
-}
+};
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionType.ITEMS_START_REQUEST:
-      return {
-        items: [],
-        error: false
-      };
-    case actionType.ITEMS_RECEIVE_DATA:
+    case actionType.START_GET_ITEMS:
+    case actionType.START_POST_ITEM:
+      return state;
+    case actionType.GET_ITEMS_RESPONSE:
+    case actionType.POST_ITEM_RESPONSE:
       return action.payload.error ?
         { ...state, error: true } :
         { ...state, items: action.payload.response };

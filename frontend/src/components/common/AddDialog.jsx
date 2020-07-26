@@ -6,6 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MenuItem from "@material-ui/core/MenuItem";
+import PropTypes from 'prop-types';
 
 const genres = [
   {
@@ -38,14 +39,18 @@ const colors = [
 ]
 
 export default function AddDialog(props) {
+  const [imageUrl, setImageUrl,] = React.useState('');
   const [
     brandId,
     setBrandId,
     genreId,
     setGenreId,
     colorId,
-    setColorId
-  ] = React.useState('');
+    setColorId] = React.useState(null);
+
+  const handleImageUrlChange = (event) => {
+    setImageUrl(event.target.value);
+  }
 
   const handleBrandChange = (event) => {
     setBrandId(event.target.value);
@@ -59,6 +64,11 @@ export default function AddDialog(props) {
     setColorId(event.target.value);
   }
 
+  const postForm = () => {
+    const request = { imageUrl, brandId, genreId, colorId }
+    props.postItemDispatch(request)
+  }
+
   return (
     <Dialog open={props.open} onClose={props.handleCloseAddDialog} aria-labelledby="form-dialog-title">
       <DialogTitle id="form-dialog-title">Add Item</DialogTitle>
@@ -70,12 +80,15 @@ export default function AddDialog(props) {
           id="imageUrl"
           label="Image URL"
           type="url"
+          onInput={handleImageUrlChange}
+          value={imageUrl}
           fullWidth
         />
         <TextField
           id="brand-select"
           select
           label="Brand"
+          type="number"
           value={brandId}
           onChange={handleBrandChange}
           fullWidth
@@ -88,6 +101,7 @@ export default function AddDialog(props) {
           id="genre-select"
           select
           label="Genre"
+          type="number"
           value={genreId}
           onChange={handleGenreChange}
           fullWidth
@@ -100,6 +114,7 @@ export default function AddDialog(props) {
           id="color-select"
           select
           label="Color"
+          type="number"
           value={colorId}
           onChange={handleColorChange}
           fullWidth
@@ -110,7 +125,7 @@ export default function AddDialog(props) {
         </TextField>
       </DialogContent>
       <DialogActions>
-        <Button onClick={props.handleCloseAddDialog} color="primary">
+        <Button onClick={postForm} color="primary">
           Save
         </Button>
       </DialogActions>

@@ -1,14 +1,14 @@
 import * as actionType from '../constants/ActionType';
 
-export const startRequest = () => ({
-  type: actionType.BRANDS_START_REQUEST
+export const startGetBrands = () => ({
+  type: actionType.START_GET_BRANDS
 });
 
-export const receiveData = (error, response) => ({
-  type: actionType.BRANDS_RECEIVE_DATA,
+export const getBrandsResponse = (error, response) => ({
+  type: actionType.GET_BRANDS_RESPONSE,
   payload: { error, response }
 });
 
-export const finishRequest = () => ({
-  type: actionType.BRANDS_FINISH_REQUEST
+export const finishGetBrands = () => ({
+  type: actionType.FINISH_GET_BRANDS
 })

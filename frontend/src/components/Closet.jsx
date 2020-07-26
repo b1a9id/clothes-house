@@ -80,7 +80,7 @@ class Closet extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes, postItem } = this.props;
     const { items, openedModal, brands } = this.state;
 
     return (
@@ -117,7 +117,7 @@ class Closet extends React.Component {
         <Grid container justify="flex-end" spacing={3}>
           <Fab color="primary" aria-label="add" className={classes.addButton} onClick={this.handleOpenAddDialog}><AddIcon /></Fab>
         </Grid>
-        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} brands={brands} />
+        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} brands={brands} postItemDispatch={postItem} />
       </main>
     );
   }

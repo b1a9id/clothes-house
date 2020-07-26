@@ -1,16 +1,27 @@
 import { call, put } from "redux-saga/effects";
 import * as ItemApi from "../apis/Item";
 import {
-  finishRequest as itemsFinishRequest,
-  receiveData as itemsReceiveData
+  getItemsResponse,
+  finishGetItems,
+  finishPostItem, postItemResponse
 } from "../actions/Item";
 
-export function* handleRequestItems() {
+export function* handleFetchItems() {
   try {
     const response = yield call(ItemApi.fetchItems);
-    yield put(itemsReceiveData(null, response.data));
+    yield put(getItemsResponse(null, response.data));
   } catch (error) {
-    yield put(itemsReceiveData(error));
+    yield put(getItemsResponse(error));
   }
-  yield put(itemsFinishRequest());
+  yield put(finishGetItems());
+}
+
+export function* handleCreateItem(action) {
+  try {
+    const response = yield call(() => ItemApi.createItem(action.payload));
+    yield put(postItemResponse(null, response.data));
+  } catch (error) {
+    yield put(postItemResponse(error));
+  }
+  yield put(finishPostItem());
 }
