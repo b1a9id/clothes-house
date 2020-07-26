@@ -116,3 +116,8 @@ allOpen {
 tasks.bootJar {
 	archiveFileName.set("clothes-house.jar")
 }
+
+tasks.wrapper {
+	gradleVersion = "6.5.1"
+	distributionType = Wrapper.DistributionType.ALL
+}
