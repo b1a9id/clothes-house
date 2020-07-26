@@ -7,21 +7,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MenuItem from "@material-ui/core/MenuItem";
 
-const genres = [
-  {
-    value: '1',
-    label: 'T Shirts'
-  },
-  {
-    value: '2',
-    label: 'Shirts'
-  },
-  {
-    value: '3',
-    label: 'Knit'
-  }
-]
-
 export default function AddDialog(props) {
   const [imageUrl, setImageUrl] = React.useState('');
   const [brandId, setBrandId] = React.useState(null);
