@@ -86,8 +86,8 @@ export default function AddDialog(props) {
           onChange={handleGenreChange}
           fullWidth
         >
-          {genres.map((genre) => (
-            <MenuItem key={genre.value} value={genre.value}>{genre.label}</MenuItem>
+          {props.genres.map((genre) => (
+            <MenuItem key={genre.id} value={genre.id}>{genre.name}</MenuItem>
           ))}
         </TextField>
         <TextField

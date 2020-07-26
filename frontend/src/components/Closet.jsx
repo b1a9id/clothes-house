@@ -50,11 +50,13 @@ class Closet extends React.Component {
       items: [],
       brands: [],
       colors: [],
+      genres: [],
       openedModal: false,
     };
     props.getItems();
     props.getBrands();
     props.getColors();
+    props.getGenres();
     this.handleOpenAddDialog = this.handleOpenAddDialog.bind(this);
     this.handleCloseAddDialog = this.handleCloseAddDialog.bind(this);
   }
@@ -75,6 +77,11 @@ class Closet extends React.Component {
         colors: nextProps.colors,
       }
     }
+    if (prevState.genres !== nextProps.genres) {
+      return {
+        genres: nextProps.genres,
+      }
+    }
     return null;
   }
 
@@ -88,7 +95,7 @@ class Closet extends React.Component {
 
   render() {
     const { classes, postItem } = this.props;
-    const { items, openedModal, brands, colors } = this.state;
+    const { items, openedModal, brands, colors, genres } = this.state;
 
     return (
       <main className={classes.content}>
@@ -124,7 +131,7 @@ class Closet extends React.Component {
         <Grid container justify="flex-end" spacing={3}>
           <Fab color="primary" aria-label="add" className={classes.addButton} onClick={this.handleOpenAddDialog}><AddIcon /></Fab>
         </Grid>
-        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} brands={brands} colors={colors} postItemDispatch={postItem} />
+        <AddDialog open={openedModal} handleCloseAddDialog={this.handleCloseAddDialog} brands={brands} colors={colors} genres={genres} postItemDispatch={postItem} />
       </main>
     );
   }
