@@ -1,20 +1,21 @@
 import * as actionType from '../constants/ActionType';
 
 const initialState = {
-  items: [],
+  colors: [],
   error: false
-};
+}
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case actionType.START_GET_ITEMS:
-    case actionType.START_POST_ITEM:
-      return state;
-    case actionType.GET_ITEMS_RESPONSE:
-    case actionType.POST_ITEM_RESPONSE:
+    case actionType.START_GET_COLORS:
+      return {
+        colors: [],
+        error: false
+      };
+    case actionType.GET_COLORS_RESPONSE:
       return action.payload.error ?
         { ...state, error: true } :
-        { ...state, items: action.payload.response };
+        { ...state, colors: action.payload.response };
     default:
       return state;
   }

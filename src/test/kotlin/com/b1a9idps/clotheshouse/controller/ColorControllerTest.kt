@@ -1,7 +1,7 @@
 package com.b1a9idps.clotheshouse.controller
 
-import com.b1a9idps.clotheshouse.service.BrandService
-import com.b1a9idps.clotheshouse.service.dto.BrandDto
+import com.b1a9idps.clotheshouse.service.ColorService
+import com.b1a9idps.clotheshouse.service.dto.ColorDto
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
@@ -18,26 +18,26 @@ import org.testcontainers.junit.jupiter.Testcontainers
 @SpringBootTest
 @AutoConfigureMockMvc
 @Testcontainers
-internal class BrandControllerTest {
+internal class ColorControllerTest {
     @MockBean
-    lateinit var brandService: BrandService
+    lateinit var colorService: ColorService
     @Autowired
-    lateinit var mockMvc : MockMvc
+    lateinit var mockMvc: MockMvc
     @Autowired
-    lateinit var mapper : ObjectMapper
+    lateinit var mapper: ObjectMapper
 
     @Test
     fun list() {
-        val brands = listOf(
-                BrandDto(1, "stof"),
-                BrandDto(2, "bedsidedrama"))
+        val colors = listOf(
+                ColorDto(1, "BLACK"),
+                ColorDto(2, "BLUE"))
 
-        Mockito.`when`(brandService.list()).thenReturn(brands)
+        Mockito.`when`(colorService.list()).thenReturn(colors)
 
-        val result = mockMvc.perform(get("/brands"))
+        val result = mockMvc.perform(get("/colors"))
                 .andExpect(status().isOk)
                 .andReturn()
         Assertions.assertThat(result.response.contentAsString)
-                .isEqualTo(mapper.writeValueAsString(brands))
+                .isEqualTo(mapper.writeValueAsString(colors))
     }
 }

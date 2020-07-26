@@ -1,14 +1,28 @@
 import * as actionType from "../constants/ActionType";
 
-export const startRequest = () => ({
-  type: actionType.ITEMS_START_REQUEST
+export const startGetItems = () => ({
+  type: actionType.START_GET_ITEMS
 });
 
-export const receiveData = (error, response) => ({
-  type: actionType.ITEMS_RECEIVE_DATA,
+export const getItemsResponse = (error, response) => ({
+  type: actionType.GET_ITEMS_RESPONSE,
   payload: { error, response }
 });
 
-export const finishRequest = () => ({
-  type: actionType.ITEMS_FINISH_REQUEST
+export const finishGetItems = () => ({
+  type: actionType.FINISH_GET_ITEMS
 });
+
+export const startPostItem = (request) => ({
+  type: actionType.START_POST_ITEM,
+  payload: request
+});
+
+export const postItemResponse = (error, response) => ({
+  type: actionType.POST_ITEM_RESPONSE,
+  payload: { error, response }
+})
+
+export const finishPostItem = () => ({
+  type: actionType.FINISH_POST_ITEM
+})
