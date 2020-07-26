@@ -15,7 +15,7 @@ export const finishGetItems = () => ({
 
 export const startPostItem = (request) => ({
   type: actionType.START_POST_ITEM,
-  payload: { request }
+  payload: request
 });
 
 export const postItemResponse = (error, response) => ({

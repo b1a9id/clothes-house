@@ -6,7 +6,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import MenuItem from "@material-ui/core/MenuItem";
-import PropTypes from 'prop-types';
 
 const genres = [
   {
@@ -23,30 +22,11 @@ const genres = [
   }
 ]
 
-const colors = [
-  {
-    value: '1',
-    label: 'RED'
-  },
-  {
-    value: '2',
-    label: 'YELLOW'
-  },
-  {
-    value: '3',
-    label: 'GREEN'
-  }
-]
-
 export default function AddDialog(props) {
-  const [imageUrl, setImageUrl,] = React.useState('');
-  const [
-    brandId,
-    setBrandId,
-    genreId,
-    setGenreId,
-    colorId,
-    setColorId] = React.useState(null);
+  const [imageUrl, setImageUrl] = React.useState('');
+  const [brandId, setBrandId] = React.useState(null);
+  const [genreId, setGenreId] = React.useState(null);
+  const [colorId, setColorId] = React.useState(null);
 
   const handleImageUrlChange = (event) => {
     setImageUrl(event.target.value);
@@ -119,8 +99,8 @@ export default function AddDialog(props) {
           onChange={handleColorChange}
           fullWidth
         >
-          {colors.map((color) => (
-            <MenuItem key={color.value} value={color.value}>{color.label}</MenuItem>
+          {props.colors.map((color) => (
+            <MenuItem key={color.id} value={color.id}>{color.name}</MenuItem>
           ))}
         </TextField>
       </DialogContent>
