@@ -15,7 +15,7 @@ jobs:
       with:
         java-version: 11
     - name: Build with Gradle and create Dockerfile
-      run: rm frontend/.env && echo REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com > frontend/.env && cat frontend/.env && ./gradlew bootBuildImage --imageName=registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
+      run: rm frontend/.env && echo REACT_APP_API_URL=https://${{secrets.HEROKU_APP_NAME}}.herokuapp.com > frontend/.env && cat frontend/.env && ./gradlew jibDockerBuild --image registry.heroku.com/${{secrets.HEROKU_APP_NAME}}/web
     - name: Login to Heroku Container registry
       env:
         HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
