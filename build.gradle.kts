@@ -10,14 +10,14 @@ val versions: Map<String, String> by extra
 
 plugins {
 	jacoco
-	id("org.springframework.boot") version "2.3.0.RELEASE"
+	id("org.springframework.boot") version "2.3.3.RELEASE"
 	id("io.spring.dependency-management") version "1.0.9.RELEASE"
 	id("com.github.node-gradle.node") version "2.2.4"
-	id("com.google.cloud.tools.jib") version "2.3.0"
-	kotlin("jvm") version "1.3.72"
-	kotlin("plugin.spring") version "1.3.72"
-	kotlin("plugin.allopen") version "1.3.72"
-	kotlin("plugin.jpa") version "1.3.72"
+	id("com.google.cloud.tools.jib") version "2.5.0"
+	kotlin("jvm") version "1.4.0"
+	kotlin("plugin.spring") version "1.4.0"
+	kotlin("plugin.allopen") version "1.4.0"
+	kotlin("plugin.jpa") version "1.4.0"
 }
 
 group = "com.b1a9idps"
@@ -118,6 +118,6 @@ tasks.bootJar {
 }
 
 tasks.wrapper {
-	gradleVersion = "6.5.1"
+	gradleVersion = "6.6.1"
 	distributionType = Wrapper.DistributionType.ALL
 }
